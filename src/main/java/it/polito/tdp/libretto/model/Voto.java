@@ -12,6 +12,16 @@ public class Voto {
 		this.punti = punti;
 		this.dataEsame = dataEsame;
 	}
+	
+	/**
+	 * Questo è il copy costructor, che prende un oggetto dello stesso tipo e lo copia
+	 * @param v
+	 */
+	public Voto(Voto v) {
+		this.corso = v.corso;
+		this.punti = v.punti;
+		this.dataEsame = v.dataEsame;
+	}
 	public String getCorso() {
 		return corso;
 	}
@@ -34,6 +44,42 @@ public class Voto {
 	@Override
 	public String toString() {
 		return corso + " ( "+punti+" punti) " + dataEsame;
+	}
+	
+	/**
+	 * Confronta due oggetti Voto in base al nome del corso e al punteggio, per vedere se è un duplicato
+	 * @param altro, un altro oggetto Voto
+	 * @return true se i due oggetti sono equivalenti per quegli attributi, false se non lo sono
+	 */
+	public boolean confrontaVotoPerEsameEPunti(Voto altro) {
+		if(this.corso.equals(altro.getCorso()) && this.punti == altro.getPunti()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Confronta due oggetti Voto in base al nome del corso e al punteggio, per vedere se c'è un conflitto
+	 * cioè stesso corso e diverso voto
+	 * @param altro, un altro oggetto Voto
+	 * @return true se i due oggetti sono equivalenti per quegli attributi, false se non lo sono
+	 */
+	public boolean isConflitto(Voto altro) {
+		if(this.corso.equals(altro.getCorso()) && this.punti != altro.getPunti()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Metodo che fa una copia di questo oggetto voto
+	 */
+	public Voto clone() {
+		return new Voto(this.corso, this.punti, this.dataEsame);
 	}
 	
 	
