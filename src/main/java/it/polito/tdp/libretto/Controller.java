@@ -48,7 +48,8 @@ public class Controller {
     }
 	
 	public void setModel(Libretto model) {
-		this.model = model;
+		this.model = model;		
+		this.txtResult.setText(model.toString());	// questa la aggiungo perchè avendo il DB non vuoto, come apro la finestra mi deve fare subito vedere i dati, senza aspettare di inserire
 	}
 	
 	

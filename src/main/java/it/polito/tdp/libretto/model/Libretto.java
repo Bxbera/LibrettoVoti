@@ -5,12 +5,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import it.polito.tdp.libretto.database.VotoDAO;
+
 public class Libretto {
 	
 	private List<Voto> voti;
 	
 	public Libretto() {
-		this.voti = new ArrayList<Voto>();
+		VotoDAO dao = new VotoDAO() ;
+		this.voti = dao.listVoti() ;
 	}
 	
 	/**
@@ -26,9 +29,10 @@ public class Libretto {
 		if(this.isVotoPresente(v)) {
 			throw new IllegalArgumentException("Voto errato: " + v);
 		}
-		else {
-			return this.voti.add(v);
-		}		
+		VotoDAO dao = new VotoDAO();
+		dao.createVoto(v) ;
+		return this.voti.add(v);
+				
 	}
 	/*
 	public void add(String corso, int punti, LocalDate data) {}
